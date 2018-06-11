@@ -1,6 +1,6 @@
 exports.up = function (knex, Promise) {
     return knex.schema.createTable('comment', (table) => {
-        table.increments()
+        table.increments().primary()
         table.integer('problem_id')
             .notNullable()
             .references('id')
@@ -9,6 +9,7 @@ exports.up = function (knex, Promise) {
             .index()
         table.text('user_id')
             .notNullable()
+            .unsigned()
             .references('id')
             .inTable('users')
             .onDelete('CASCADE')
