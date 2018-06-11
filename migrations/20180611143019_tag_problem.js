@@ -1,5 +1,5 @@
 exports.up = function (knex, Promise) {
-    return knex.schema.createTable('comment', (table) => {
+    return knex.schema.createTable('users', (table) => {
         table.increments()
         table.integer('problem_id')
             .notNullable()
@@ -7,17 +7,15 @@ exports.up = function (knex, Promise) {
             .inTable('problem')
             .onDelete('CASCADE')
             .index()
-        table.text('user_id')
+        table.integer('tag_id')
             .notNullable()
             .references('id')
-            .inTable('users')
+            .inTable('tag')
             .onDelete('CASCADE')
             .index()
-        table.text('comment_text')
-        table.integer('points')
     })
 }
 
 exports.down = function (knex, Promise) {
-    return knex.schema.dropTable('comment')
+    return knex.schema.dropTable('users')
 }
