@@ -88,6 +88,18 @@ const problems = [
 
 ]
 
+const comments = module.exports = [
+    {
+        id: 1,
+        problem_id: 1,
+        user_id: 3,
+        date: '2018-06-11T06:00:00.000Z',
+        comment_text: 'When I create a post request, my parent component does not re-render. How do I do that without moving my post request function up to the parent component',
+        points: 1,
+    },
+
+]
+
 const user = {
     id: 6,
     'user_name': 'kcoberly',
@@ -107,6 +119,15 @@ const problem = {
     problem_solved: true,
 }
 
+const comment = {
+    id: 2,
+    problem_id: 2,
+    user_id: 1,
+    date: '2018-06-11T06:00:00.000Z',
+    comment_text: 'Have you tried breaking your computer?',
+    points: 1,
+}
+
 module.exports = {
     users,
     user,
@@ -114,4 +135,6 @@ module.exports = {
     tag,
     problems,
     problem,
+    comments,
+    comment,
 }

@@ -14,6 +14,7 @@ exports.up = (knex, Promise) => {
             .inTable('users')
             .onDelete('CASCADE')
             .index()
+        table.date('date')
         table.text('comment_text')
         table.integer('points')
     })

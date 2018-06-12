@@ -283,4 +283,81 @@ describe('Que Overflow', () => {
             })
             .catch(error => console.log(error))
     })
+
+    it('Lists All Comments', (done) => {
+        request(app)
+            .get('/comments')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('array')
+                expect(response.body).to.deep.equal(fixtures.comments)
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Show One Comment By ID', (done) => {
+        request(app)
+            .get('/comments/1')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                expect(response.body).to.deep.equal(fixtures.comments[0])
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Creates A Comment', (done) => {
+        request(app)
+            .post('/comments')
+            .send(fixtures.comment)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                fixtures.comment.id = response.body.id
+                expect(response.body).to.deep.equal(fixtures.comment)
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Updates A Comment', (done) => {
+        fixtures.comment.comment_text = 'Check your migrations'
+        request(app)
+            .put('/comments/2')
+            .send(fixtures.comment)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                fixtures.comment.id = response.body.id
+                expect(response.body).to.deep.equal(fixtures.comment)
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Deletes A Comment', (done) => {
+        request(app)
+            .delete('/comments/2')
+            .send(fixtures.problem)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                fixtures.comment.id = response.body.id
+                expect(response.body).to.deep.equal({ message: 'Comment Deleted!' })
+                done()
+            })
+            .catch(error => console.log(error))
+    })
 })
