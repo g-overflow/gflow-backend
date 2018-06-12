@@ -1,4 +1,4 @@
-const tags = require('../tags')
+const tags = require('../lib/tags')
 
 exports.seed = (knex, Promise) => {
 

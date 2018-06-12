@@ -1,8 +1,8 @@
-const users = require('../users')
+const users = require('../lib/users')
 
 exports.seed = (knex, Promise) => {
 
-  return knex('table_name').del()
+  return knex('users').del()
     .then(() => {
       return knex('users').insert(users)
     })
