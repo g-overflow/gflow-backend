@@ -5,10 +5,14 @@ const cors = require('cors')
 const app = module.exports = express()
 const port = parseInt(process.env.PORT || 3000)
 
+const users = require('./api/users')
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'))
 app.use(cors({ origin: true, credentials: true }))
+
+app.use('/users', users)
 
 app.use(notFound)
 app.use(errorHandler)
