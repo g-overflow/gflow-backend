@@ -177,7 +177,7 @@ describe('Que Overflow', () => {
             .catch(error => console.log(error))
     })
 
-    it('Deletes A User', (done) => {
+    it('Deletes A Tag', (done) => {
         request(app)
             .delete('/tags/12')
             .send(fixtures.tag)
@@ -188,6 +188,97 @@ describe('Que Overflow', () => {
                 expect(response.body).to.be.a('object')
                 fixtures.tag.id = response.body.id
                 expect(response.body).to.deep.equal({ message: 'Tag Deleted!' })
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Lists All Problems', (done) => {
+        request(app)
+            .get('/problems')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('array')
+                expect(response.body).to.deep.equal(fixtures.problems)
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Show One Problem By ID', (done) => {
+        request(app)
+            .get('/problems/1')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                expect(response.body).to.deep.equal(fixtures.problems[0])
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Show Another Problem By ID', (done) => {
+        request(app)
+            .get('/problems/2')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                expect(response.body).to.deep.equal(fixtures.problems[1])
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Creates A Problem', (done) => {
+        request(app)
+            .post('/problems')
+            .send(fixtures.problem)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                fixtures.problem.id = response.body.id
+                expect(response.body).to.deep.equal(fixtures.problem)
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Updates A Problem', (done) => {
+        fixtures.problem.problem_title = 'React Form Problems'
+        request(app)
+            .put('/problems/3')
+            .send(fixtures.problem)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                fixtures.problem.id = response.body.id
+                expect(response.body).to.deep.equal(fixtures.problem)
+                done()
+            })
+            .catch(error => console.log(error))
+    })
+
+    it('Deletes A Problem', (done) => {
+        request(app)
+            .delete('/problems/3')
+            .send(fixtures.problem)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then(response => {
+                expect(response.body).to.be.a('object')
+                fixtures.problem.id = response.body.id
+                expect(response.body).to.deep.equal({ message: 'Problem Deleted!' })
                 done()
             })
             .catch(error => console.log(error))

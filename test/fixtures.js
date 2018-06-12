@@ -68,6 +68,26 @@ const tags = [
     },
 ]
 
+const problems = [
+    {
+        id: 1,
+        users_id: 1,
+        date: '2018-06-11T06:00:00.000Z',
+        problem_title: 'Re-rendering components when state changes',
+        problem_text: 'When I create a post request, my parent component does not re-render. How do I do that without moving my post request function up to the parent component',
+        problem_solved: true,
+    },
+    {
+        id: 2,
+        users_id: 2,
+        date: '2018-06-11T06:00:00.000Z',
+        problem_title: 'Foreign key constraint cannot be implemented with Knex',
+        problem_text: 'Attempting to knex migrate:latest and keep getting the same error: Foreign key constraint cannot be implemented with Knex',
+        problem_solved: false,
+    },
+
+]
+
 const user = {
     id: 6,
     'user_name': 'kcoberly',
@@ -78,9 +98,20 @@ const tag = {
     tag_name: 'mocha',
 }
 
+const problem = {
+    id: 3,
+    users_id: 3,
+    date: '2018-06-11T06:00:00.000Z',
+    problem_title: 'React Forms',
+    problem_text: 'React forms... DUH',
+    problem_solved: true,
+}
+
 module.exports = {
     users,
     user,
     tags,
     tag,
+    problems,
+    problem,
 }
