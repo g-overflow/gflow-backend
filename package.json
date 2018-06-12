@@ -6,7 +6,7 @@
   "scripts": {
     "start": "index.js",
     "dev": "nodemon",
-    "test": "(dropdb --if-exists test-g-flow && createdb test-g-flow) &&NODE_ENV=test mocha"
+    "test": "(dropdb --if-exists test-g-flow && createdb test-g-flow) && NODE_ENV=test mocha"
   },
   "author": "",
   "license": "ISC",
