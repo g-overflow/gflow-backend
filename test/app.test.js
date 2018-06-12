@@ -4,7 +4,7 @@ const expect = require('chai').expect
 const app = require('../index')
 const fixtures = require('./fixtures')
 
-describe('Que Overflow', () => {
+describe('Queue Overflow', () => {
     before((done) => {
         knex.migrate.latest()
             .then(() => knex.seed.run())
