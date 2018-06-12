@@ -10,6 +10,7 @@ require('dotenv').config()
 
 const users = require('./api/users')
 const tags = require('./api/tags')
+const problems = require('./api/problems')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -17,6 +18,7 @@ app.use(morgan(process.env.NODE_ENV !== 'production' ? 'dev' : 'combined'))
 app.use(cors({ origin: true, credentials: true }))
 
 app.use('/users', users)
+app.use('/problems', problems)
 app.use('/tags', tags)
 
 app.get('/github_login', (req, res, next) => {
