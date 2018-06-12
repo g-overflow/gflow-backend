@@ -1,22 +1,28 @@
 const users = [
     {
-        'user_name': 'colemanimhoff',
+        id: 1,
+        user_name: 'colemanimhoff',
     },
     {
-        'user_name': 'sean-blattenberger',
+        id: 2,
+        user_name: 'sean-blattenberger',
     },
     {
-        'user_name': 'ebectar',
+        id: 3,
+        user_name: 'ebectar',
     },
     {
-        'user_name': 'santa505',
+        id: 4,
+        user_name: 'santa505',
     },
     {
-        'user_name': 'steventalking',
+        id: 5,
+        user_name: 'steventalking',
     },
 ]
 
 const user = {
+    id: 6,
     'user_name': 'kcoberly',
 }
 

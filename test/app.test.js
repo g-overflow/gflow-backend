@@ -62,7 +62,7 @@ describe('Que Overflow', () => {
             .expect(200)
             .then(response => {
                 expect(response.body).to.be.a('object')
-                fixtures.album.id = response.body.id
+                fixtures.user.id = response.body.id
                 expect(response.body).to.deep.equal(fixtures.user)
                 done()
             })
