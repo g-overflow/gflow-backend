@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const queries = require('../db/problemQueries')
-// const knex = require('../db/database-connection')
+const knex = require('../db/database-connection')
 
 function isValidId(request, response, next) {
     !isNaN(request.params.id)
@@ -28,6 +28,18 @@ router.get('/:id', isValidId, (request, response) => {
                 return response.json(problem)
             } else {
                 return response.status(404).send({ message: 'Problem not found!' })
+            }
+        })
+})
+
+router.get('/users/:id/', (request, response, next) => {
+    return knex('users').innerJoin('problem', 'users.id', 'problem.users_id')
+        .where('users.id', request.params.id)
+        .then(user => {
+            if (user) {
+                return response.json(user)
+            } else {
+                return response.status(404).send({ message: 'User doesn\'t exist!' })
             }
         })
 })
