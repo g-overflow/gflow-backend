@@ -19,18 +19,6 @@ router.get('/', (request, response) => {
     return queries.list().then(comments => response.json(comments))
 })
 
-router.get('/problems/:id/', (request, response, next) => {
-    return knex('problem').innerJoin('comment', 'problem.id', 'problem_id')
-        .where('problem.id', request.params.id)
-        .then(problem => {
-            if (problem) {
-                return response.json(problem)
-            } else {
-                return response.status(404).send({ message: 'Problem doesn\'t exist!' })
-            }
-        })
-})
-
 router.get('/:id', isValidId, (request, response) => {
     return queries.read(request.params.id)
         .then(comment => {

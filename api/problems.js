@@ -32,17 +32,18 @@ router.get('/:id', isValidId, (request, response) => {
         })
 })
 
-router.get('/users/:id/', (request, response, next) => {
-    return knex('users').innerJoin('problem', 'users.id', 'problem.users_id')
-        .where('users.id', request.params.id)
-        .then(user => {
-            if (user) {
-                return response.json(user)
+router.get('/comments/:id/', (request, response, next) => {
+    return knex('comment').innerJoin('problem', 'problem.id', 'comment.problem_id')
+        .where('comment.id', request.params.id)
+        .then(comment => {
+            if (comment) {
+                return response.json(comment)
             } else {
-                return response.status(404).send({ message: 'User doesn\'t exist!' })
+                return response.status(404).send({ message: 'Comment doesn\'t exist!' })
             }
         })
 })
+
 
 router.post('/', (request, response, next) => {
     validProblem(request.body)
