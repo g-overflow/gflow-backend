@@ -12,6 +12,7 @@ const users = require('./api/users')
 const tags = require('./api/tags')
 const problems = require('./api/problems')
 const comments = require('./api/comments')
+const tagsProblems = require('./api/tags_problems')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -22,6 +23,7 @@ app.use('/users', users)
 app.use('/problems', problems)
 app.use('/comments', comments)
 app.use('/tags', tags)
+app.use('/problem/tags', tagsProblems)
 
 app.get('/github_login', (req, res, next) => {
   const code = req.query.code
