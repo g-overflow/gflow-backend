@@ -94,7 +94,7 @@ const comments = module.exports = [
         problem_id: 1,
         user_id: 3,
         date: '2018-06-11T06:00:00.000Z',
-        comment_text: 'When I create a post request, my parent component does not re-render. How do I do that without moving my post request function up to the parent component',
+        comment_text: 'Put a helper function in the parent component!',
         points: 1,
     },
 
