@@ -5,7 +5,7 @@ const cors = require('cors')
 const request = require('request')
 const querystring = require('querystring')
 const app = (module.exports = express())
-const port = parseInt(process.env.PORT || 3000)
+const port = parseInt(process.env.PORT || 3001)
 require('dotenv').config()
 
 const users = require('./api/users')
@@ -44,7 +44,7 @@ app.get('/github_login', (req, res, next) => {
     (err, response, body) => {
       const github = querystring.parse(body)
       res.cookie('galvanize-secrets-token', github.access_token)
-      res.redirect('/')
+      res.redirect('http://localhost:3000/')
     }
   )
 })
