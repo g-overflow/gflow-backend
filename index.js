@@ -44,6 +44,8 @@ app.get('/github_login', (req, res, next) => {
     },
     (err, response, body) => {
       const github = querystring.parse(body)
+      console.log('body', body)
+
       res.cookie('galvanize-secrets-token', github.access_token)
       res.redirect('https://queue-overflow.firebaseapp.com')
     }
