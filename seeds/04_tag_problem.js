@@ -5,5 +5,5 @@ exports.seed = (knex, Promise) => {
     .then(() => {
       return knex('tag_problem').insert(tagProblems)
     })
-    .then(() => knex.raw('DELETE FROM "user"; ALTER SEQUENCE user_id_seq RESTART WITH 4;'))
+  // .then(() => knex.raw('DELETE FROM "user"; ALTER SEQUENCE user_id_seq RESTART WITH 4;'))
 }
