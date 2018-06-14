@@ -7,7 +7,6 @@ const querystring = require('querystring')
 const app = (module.exports = express())
 const port = parseInt(process.env.PORT || 3001)
 require('dotenv').config()
-import fetch from 'node-fetch'
 
 const users = require('./api/users')
 const tags = require('./api/tags')
@@ -32,31 +31,22 @@ app.get('/github_login', (req, res, next) => {
   if (!code) {
     return next()
   }
-  console.log('code', code, 'req.query', req.query)
-  let form = {
-    code,
-    client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET,
-  }
-  fetch(
+
+  request.post(
     'https://github.com/login/oauth/access_token',
     {
-      method: 'POST',
-      header: {
-        'content-type': 'application/json',
+      form: {
+        code,
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
       },
-      body: JSON.stringify(form),
     },
     (err, response, body) => {
       const github = querystring.parse(body)
-      console.log('body', body)
-
       res.cookie('galvanize-secrets-token', github.access_token)
-      res.redirect('http://localhost:3000/')
+      res.redirect('https://queue-overflow.firebaseapp.com')
     }
   )
-    .then(response => response.json())
-    .catch(error => console(error))
 })
 
 app.use(notFound)
