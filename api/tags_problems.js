@@ -14,8 +14,8 @@ router.get('/', (request, response, next) => {
         .join('tag_problem', 'tag_problem.problem_id', 'problem.id')
         .join('tag', 'tag_problem.tag_id', 'tag.id')
         .select(
-            'problem.id as problem_id',
-            'tag.id as tag_id'
+            // 'problem.id as problem_id',
+            // 'tag.id as tag_id'
         )
         .then(tags => {
             if (tags) {
