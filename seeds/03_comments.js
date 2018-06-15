@@ -5,5 +5,6 @@ exports.seed = (knex, Promise) => {
     .then(() => {
       return knex('comment').insert(comments)
     })
+  //future implementation -  alter sequence
   // .then(() => knex.raw('DELETE FROM "user"; ALTER SEQUENCE comment_id_seq RESTART WITH 2;'))
 }

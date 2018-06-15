@@ -3,11 +3,15 @@ const router = express.Router()
 const queries = require('../db/tags_problemQueries')
 const knex = require('../db/database-connection')
 
+//implement middleware to handle edge cases on the front end
+
 // function validIds(submission) {
 //     const problemId = !isNaN(submission.problem_id)
 //     const tagId = !isNaN(submission.tag_id)
 //     return tagId && problemId
 // }
+
+//finalize preferred join for tags and problems
 
 router.get('/', (request, response, next) => {
     return knex('problem')
